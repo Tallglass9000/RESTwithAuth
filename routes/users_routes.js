@@ -12,17 +12,17 @@ usersRouter.post('/signup', jsonParser, function (req, res) {
   var newUser = new User();
   newUser.basic.username = req.body.username;
   newUser.username = req.body.username;
-  ee.emit('firstAction', req, res, newUser);
+  ee.emit('generateHash', req, res, newUser);
 });
 
-ee.on('firstAction', function (req, res, newUser) {
+ee.on('generateHash', function (req, res, newUser) {
   newUser.generateHash(req.body.password, function (err, hash) {
     if (err) return handleError(err, res);
-    ee.emit('secondAction', req, res, newUser);
+    ee.emit('saveNewUser', req, res, newUser);
   });
 });
 
-ee.on('secondAction', function (req, res, newUser) {
+ee.on('saveNewUser', function (req, res, newUser) {
   newUser.save(function (err, data) {
     if (err) return handleError(err, res);
     newUser.generateToken(function(err, token) {
