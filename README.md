@@ -1,2 +1,2 @@
-# RESTwithAuth
-Simple REST API with HTTP Basic Authentication
+# Single-Resource-REST-API
+REST API
