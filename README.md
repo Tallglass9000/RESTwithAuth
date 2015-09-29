@@ -1,2 +1,2 @@
 # Single-Resource-REST-API
-REST API
+Simple REST API with a single resource and an HTTP-Basic authentication system
